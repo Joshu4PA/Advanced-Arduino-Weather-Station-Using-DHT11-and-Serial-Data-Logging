@@ -1,8 +1,6 @@
 # Advanced-Arduino-Weather-Station-Using-DHT11-and-Serial-Data-Logging
 An Arduino Uno (CH340G clone) reads temperature and humidity from a DHT11 sensor and computes 10+ environmental metrics (heat index, dew point, enthalpy, humidex, vapor pressures, etc.), outputting them as CSV-formatted serial data for real-time monitoring, logging, or visualization on a connected Python-based host device.
 
-Here is the fully revised, detailed, and clearly worded explanation of both the **Arduino sketch** and the **Python script**:
-
 ---
 
 ### Arduino Sketch 
