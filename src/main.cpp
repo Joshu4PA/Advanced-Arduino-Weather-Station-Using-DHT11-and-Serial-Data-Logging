@@ -2,12 +2,23 @@
 
 #define DHTPIN 2         // Pin where the DHT11 is connected
 #define DHTTYPE DHT11    // DHT11 sensor
+#define LED_PIN 13       // On-board LED pin for Arduino Uno
 
 DHT dht(DHTPIN, DHTTYPE);
+
+void blinkLed(int times, int delayMs) {
+  for (int i = 0; i < times; i++) {
+    digitalWrite(LED_PIN, HIGH);
+    delay(delayMs);
+    digitalWrite(LED_PIN, LOW);
+    delay(delayMs);
+  }
+}
 
 void setup() {
   Serial.begin(9600);
   dht.begin();
+  pinMode(LED_PIN, OUTPUT); // Set LED pin as output
   delay(2000); // Allow sensor startup time
 }
 
@@ -32,6 +43,9 @@ void loop() {
   float wetBulb = temp * atan(0.151977 * sqrt(hum + 8.313659)) + atan(temp + hum) - atan(hum - 1.676331) + 0.00391838 * pow(hum, 1.5) * atan(0.023101 * hum) - 4.686035;
   float humidex = temp + 0.5555 * (vaporPressure - 10.0);
   float enthalpy = 1.006 * temp + (2501 + 1.86 * temp) * hum / 100.0;
+
+  // Blink LED 3 times quickly
+  blinkLed(3, 60);
 
   // Send data
   Serial.print(temp, 2); Serial.print(",");
